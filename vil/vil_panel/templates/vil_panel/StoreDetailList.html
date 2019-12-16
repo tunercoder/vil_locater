@@ -1,0 +1,97 @@
+{% extends 'vil_panel/base.html' %}
+{% block title %}Store Manager{% endblock title %}
+{% block content %}
+ {% if object_list %}
+		 <table class="table table-sm">
+			  <thead>
+				<tr>
+					<!-- <th scope="col">#</th> -->
+					<!-- <th scope="col">newcustomer</th>
+					<th scope="col">postpaid</th> -->
+					<th scope="col">customername</th>
+					<th scope="col">customer_mobile_no</th>
+					<th scope="col">pk</th>
+					<!-- <th scope="col">4g_sim_upgrade_pitched</th>
+					<th scope="col">4g_sim_upgrade_converted</th>
+					<th scope="col">voda_idea_app_pitched</th>
+					<th scope="col">voda_idea_app_converted</th>
+					<th scope="col">non_telco_offer_edu_pitched</th>
+					<th scope="col">non_telco_offer_edu_converted</th>
+					<th scope="col">plan_upgrading_to_unlimited_pitched</th>
+					<th scope="col">plan_upgrading_to_unlimited_converted</th>
+					<th scope="col">email_updation_pitched</th>
+					<th scope="col">email_updation_converted</th>
+					<th scope="col">non_mobility_pitched</th>
+					<th scope="col">non_mobility_converted</th>
+					<th scope="col">date_time</th>
+					<th scope="col">name</th>
+					<th scope="col">pk</th> -->
+				</tr>
+			  </thead>
+
+			  <tbody>
+					{% for entry in object_list %}
+						<tr>
+						  <!-- <th scope="row">1</th> -->
+						  <!-- <td>{{ entry.is_new_customer }}</td>
+						  <td>{{ entry.is_postpaid }}</td> -->
+						  <td>{{ entry.customer_name }}</td>
+						  <td>{{ entry.customer_mobile_no }}</td>
+						   <td>{{ entry.id }}</td>
+						  <!-- <td>{{ entry.is_4g_sim_upgrade_pitched }}</td>
+						  <td>{{ entry.is_4g_sim_upgrade_converted }}</td>
+						  <td>{{ entry.is_voda_idea_app_pitched }}</td>
+						  <td>{{ entry.is_voda_idea_app_converted }}</td>
+						  <td>{{ entry.is_non_telco_offer_edu_pitched }}</td>
+						  <td>{{ entry.is_non_telco_offer_edu_converted }}</td>
+						  <td>{{ entry.is_plan_upgrading_to_unlimited_pitched }}</td>
+						  <td>{{ entry.is_plan_upgrading_to_unlimited_converted }}</td>
+						  <td>{{ entry.is_email_updation_pitched }}</td>
+						  <td>{{ entry.is_email_updation_converted }}</td>
+						  <td>{{ entry.is_non_mobility_pitched }}</td>
+						  <td>{{ entry.is_non_mobility_converted }}</td>
+						  <td>{{ entry.insertion_date_time }}</td>
+						  <td>{{ entry.profile }}</td>
+						  <td>{{ entry.id }}</td> -->
+						  <td><a class="btn btn-outline-secondary" href="{% url 'vilpanel-storedetailupdate' pk=entry.id %}">Edit</a></td>
+						  <td><a class="btn btn-outline-secondary" href="{% url 'vilpanel-storedetail' pk=entry.id %}">Details</a></td>
+						</tr>
+					{% endfor %}
+			  </tbody>
+			</table>
+{% else %}
+    <p>There are no details.</p>
+{% endif %}    
+
+
+
+	{% if is_paginated %}
+
+      {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      {% endif %}
+
+    {% endif %}
+	
+
+{% endblock content %}
+
+
+
+
+	
+	

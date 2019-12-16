@@ -1,0 +1,24 @@
+{% extends 'vil_panel/base.html' %}
+{% block title %}Store Manager{% endblock title %}
+{% block content %}
+ {% if object %}
+	<legend class="border-bottom mb-4">{{ object.profile }} filled detail of {{object.customer_name}} : </legend>
+	<div class="media">
+		<table class="table table-sm">
+			 {% for name,value in object.get_fields %}
+				<tr>
+					<td><h6 class="text-primary">{{ name }}</h6></td>	
+					<td class="text-secondary">{{ value }}</td>
+				</tr>
+
+			{% endfor %}
+		</table>
+	  </div>
+	  <p>
+	  <a class="btn btn-outline-secondary" href="{% url 'vilpanel-storedetaillist' %}">Back</a>
+	  </p>
+{% else %}
+    <p>There are no details.</p>
+ {% endif %}    
+
+{% endblock content %}

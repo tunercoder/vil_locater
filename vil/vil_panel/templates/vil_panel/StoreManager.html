@@ -1,0 +1,24 @@
+{% extends 'vil_panel/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Store Manager{% endblock title %}
+{% block content %}
+<h1>StoreManager</h1>
+	{% crispy form %}
+	<select id="the-id">
+		{% for user in profiles %}
+			<option value="{{ user }}">{{ user }}</option>
+		{% endfor %}
+	</select>
+	
+ <script>
+  $(function() {
+    $( ".datepicker" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "1900:2012",
+      // You can put more options here.
+
+    });
+  });
+  </script>
+{% endblock content %}
