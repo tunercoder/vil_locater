@@ -17,3 +17,12 @@ class SearchForm(forms.Form):
 	customer_mobile_no = forms.CharField()
 	start_date = forms.DateField(widget=DateInput)
 	end_date = forms.DateField(widget=DateInput)
+	
+	
+	def clean(self):
+		cleaned_data = super(SearchForm, self).clean()
+		customer_mobile_no = cleaned_data.get('customer_mobile_no')
+		start_date = cleaned_data.get('start_date')
+		end_date = cleaned_data.get('end_date')
+		if not customer_mobile_no and not start_date and not end_date:
+			raise forms.ValidationError('You have to write something!')	

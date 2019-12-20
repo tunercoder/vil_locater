@@ -2,14 +2,18 @@
 {% load crispy_forms_tags %}
 {% block title %}Store Manager{% endblock title %}
 {% block content %}
-<h1>StoreManager</h1>
-	{% crispy form %}
-	<select id="the-id">
-		{% for user in profiles %}
-			<option value="{{ user }}">{{ user }}</option>
-		{% endfor %}
-	</select>
-	
+	 <div class="content-section">
+        <form action="{% url 'search_results' %}" method="get">
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Fill Search Details</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+
  <script>
   $(function() {
     $( ".datepicker" ).datepicker({
@@ -22,3 +26,10 @@
   });
   </script>
 {% endblock content %}
+
+
+<!--  <select id="the-id">
+		{% for user in profiles %}
+			<option value="{{ user }}">{{ user }}</option>
+		{% endfor %}
+	</select> -->

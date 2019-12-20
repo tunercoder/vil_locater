@@ -5,7 +5,8 @@ StoreDetailListView,
 StoreDetailView,
 StoreDetailCreateView,
 StoreDetailUpdateView,
-StoreDetailDeleteView
+StoreDetailDeleteView,
+SearchResultsView
 )
 
 urlpatterns = [
@@ -13,6 +14,7 @@ urlpatterns = [
     #path('store/', views.store, name='vilpanel-store'),
 	path('storemanager/', views.storemanager, name='vilpanel-storemanager'),
 	path('zonal/', views.zonalmanager, name='vilpanel-zonal'),
+	path('search/', SearchResultsView.as_view(), name='search_results'),
 	
 	path('storedetail/list/', StoreDetailListView.as_view(), name='vilpanel-storedetaillist'),
 	path('storedetail/list/<int:pk>/', StoreDetailView.as_view(), name='vilpanel-storedetail'),
